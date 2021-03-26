@@ -26,15 +26,16 @@ be fine if you have GNU utilities.
   for the pet submodule. These packages are available in distribution
   repositories, or could be installed by building LLVM and Clang from sources.
   On a Fedora distribution, these could be typically installed with:
-  $ dnf -y install llvm-devel clang-devel
+  `dnf -y install llvm-devel clang-devel`
 
-- LLVM FileCheck is used for Pluto's test suite. (On a Fedora, this is part of
-  the 'llvm' package.)
+- LLVM FileCheck is used for Pluto's test suite.
+   - On Fedora, included in package `llvm`
+   - On Ubuntu, included in package `llvm-<ver>-tools` (where `<ver>` is the LLVM version)
 
 - GMP (GNU multi precision arithmetic library) is needed by ISL (one of the
   included libraries).  If it's not already on your system, it can be installed
-  easily with, for eg., 'sudo yum -y install gmp gmp-devel' on a Fedora ('sudo
-  apt-get install libgmp3-dev' or something similar on an Ubuntu).
+  easily with, for eg., `sudo yum -y install gmp gmp-devel` on a Fedora (`sudo
+  apt-get install libgmp10 libgmp3-dev` or something similar on an Ubuntu).
 
 Pluto includes all polyhedral libraries that it depends on. See pet/README for
 pet's pre-requisites.
