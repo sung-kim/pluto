@@ -13,3 +13,6 @@ orig_par
 blis
 openblas
 pipepar
+matmul.clang
+matmul.gcc
+*.log

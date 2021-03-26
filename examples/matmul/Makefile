@@ -29,6 +29,18 @@ netlib: dgemm.f
 goto: dgemm.f
 	 ifort -o goto dgemm.f -L ~/tmp/GotoBLAS -lgoto_core2p-r1.23 -lpthread
 
+# basic comparison of gcc -O3, clang -03, and pluto default tiling
+# - from https://arxiv.org/abs/2003.00532
+example_compare: tiled
+	@# w/ clang
+	clang -O3 -ffast-math -DTIME matmul.c -o matmul.clang -lm
+	./matmul.clang | tee matmul.clang.log
+	@# w/ gcc
+	gcc -O3 -ffast-math  -DTIME matmul.c -o matmul.gcc -lm
+	./matmul.gcc | tee matmul.gcc.log
+	@# w/ pluto: `tiled` target
+	./tiled | tee matmul.pluto-tiled.log
+
 blas_test: tiled mkl openblas blis
 	touch .test
 	./tiled 2> out_tiled
